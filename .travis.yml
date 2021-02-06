@@ -1,0 +1,10 @@
+language: node_js
+
+node_js:
+  - node # latest version
+
+cache:
+  - npm
+
+script:
+  - make tests-ci
