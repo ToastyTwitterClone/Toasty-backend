@@ -6,3 +6,7 @@ tests:
 
 lint:
 	npm run format
+
+tests-ci:
+	npm run format-ci
+	npm run test

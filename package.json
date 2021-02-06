@@ -5,6 +5,7 @@
   "scripts": {
     "start": "node lib/infrastructure/webserver/bin/www",
     "format": "npx prettier --write .",
+    "format-ci": "npx prettier --check .",
     "debug": "nodemon --inspect ./lib/infrastructure/webserver/bin/www",
     "test": "npx mocha"
   },
