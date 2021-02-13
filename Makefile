@@ -1,7 +1,7 @@
 run:
 	npm run debug
 
-tests:
+test:
 	npm run test
 
 lint:
