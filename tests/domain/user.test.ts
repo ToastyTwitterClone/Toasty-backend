@@ -89,6 +89,18 @@ describe("User domain model", () => {
 
     expect(testUser).toThrow(ValidationError);
   });
+  it("Should throw if password is not valid", () => {
+    const firstName = "TestName";
+    const lastName = "TestLastName";
+    const email = "test@test.com";
+    const password = "test";
+
+    const testUser = () => {
+      new User(firstName, lastName, email, password);
+    };
+
+    expect(testUser).toThrow(ValidationError);
+  });
   it("Should throw if setting too long firstName", () => {
     const firstName = "TestName";
     const lastName = "TestLastName";
@@ -117,5 +129,33 @@ describe("User domain model", () => {
     };
 
     expect(changingLastName).toThrow(ValidationError);
+  });
+  it("Should throw if setting wrong email", () => {
+    const firstName = "TestName";
+    const lastName = "TestLastName";
+    const email = "test@test.com";
+    const test_email = "testtest.com";
+
+    let testUser = new User(firstName, lastName, email);
+
+    const changingEmail = () => {
+      testUser.email = test_email;
+    };
+
+    expect(changingEmail).toThrow(ValidationError);
+  });
+  it("Should throw if setting wrong password", () => {
+    const firstName = "TestName";
+    const lastName = "TestLastName";
+    const email = "test@test.com";
+    const test_password = "test";
+
+    let testUser = new User(firstName, lastName, email);
+
+    const changingPassword = () => {
+      testUser.password = test_password;
+    };
+
+    expect(changingPassword).toThrow(ValidationError);
   });
 });
