@@ -5,13 +5,15 @@ import {
 import PasswordValidator from "../../shared/validators/user/password";
 import BaseValidator from "../../shared/validators/user/base";
 import EmailValidator from "../../shared/validators/user/email";
+import { UsernameValidator } from "../../shared/validators/user/username";
 
 export class User {
+  private _email: string;
   private _firstName: string;
+  private _id?: string;
   private _lastName: string;
   private _password?: string;
-  private _email: string;
-  private _id?: string;
+  private _username: string;
 
   // Unexpected any, specify a different type
   // eslint-disable-next-line
@@ -20,12 +22,17 @@ export class User {
   }
 
   constructor(
+    username: string,
     firstName: string,
     lastName: string,
     email: string,
     password?: string,
     id?: string,
   ) {
+    this._username = this.validate(
+      username,
+      UsernameValidator,
+    ).getValidatedData();
     this._firstName = this.validate(
       firstName,
       FirstNameValidator,
@@ -45,6 +52,17 @@ export class User {
 
   get id(): string | undefined {
     return this._id;
+  }
+
+  get username(): string {
+    return this._username;
+  }
+
+  set username(username: string) {
+    this._username = this.validate(
+      username,
+      UsernameValidator,
+    ).getValidatedData();
   }
 
   set email(email: string) {
