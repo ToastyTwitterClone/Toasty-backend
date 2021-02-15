@@ -27,9 +27,9 @@ export default class UserRepositoryInMemory implements UserRepository {
     return Promise.resolve(null);
   }
 
-  public async getById(user_id: string): Promise<User | null> {
+  public async getById(userId: string): Promise<User | null> {
     for (const user of this._database) {
-      if (user.id === user_id) {
+      if (user.id === userId) {
         return Promise.resolve(user);
       }
     }
